@@ -11,8 +11,15 @@ public class JTools : EditorWindow
 	private string ReplaceString;
 	private bool ShowFindReplace;
 
-	//private MonoScript Script;
-	//private bool ShowAddScript;
+	private string TagString;
+
+	[SerializeField]
+	private GameObject[] TagArray;
+
+	private bool ShowFindTag;
+
+	private MonoScript Script;
+	private bool ShowAddScript;
 
 	private bool ShowInitPrefab;
 
@@ -35,7 +42,9 @@ public class JTools : EditorWindow
 
 		FindAndReplaceNames();
 
-		//AddScripts();
+		FindTags();
+
+		AddScripts();
 
 		InitPrefabs();
 	}
@@ -48,102 +57,6 @@ public class JTools : EditorWindow
 		GUILayout.Label("J-Tools", EditorStyles.boldLabel);
 		GUILayout.Label("A random selection of tools that may or may not be useful.");
 	}
-
-
-	//public void AddScripts()
-	//{
-	//	GUILayout.Space(10f);
-	//	GUILayout.Label("Add Script To Object", EditorStyles.boldLabel);
-
-	//	ShowAddScript = EditorGUILayout.Foldout(ShowAddScript, "Options");
-
-	//	if (ShowAddScript)
-	//	{
-	//		EditorGUILayout.HelpBox("Select the script you wish to add to the objects. Then select the gameobject(s) you wish to add that script to", MessageType.None);
-
-	//		GUILayout.BeginHorizontal();
-	//		EditorGUILayout.PrefixLabel("Script To Attach: ");
-	//		Script = EditorGUILayout.ObjectField(Script, typeof(MonoScript), false) as MonoScript;
-	//		GUILayout.EndHorizontal();
-
-	//		GUILayout.BeginHorizontal();
-	//		GUILayout.FlexibleSpace();
-	//		if (GUILayout.Button("Attach Script", GUILayout.MaxWidth(100)))
-	//		{
-	//			if (Script != this)
-	//			{
-	//				foreach (GameObject Obj in Selection.gameObjects)
-	//				{
-	//					if (Obj.GetComponent<MonoScript>().name != Script.name)
-	//					{
-
-	//					}
-	//				}
-	//			}
-	//		}
-	//		GUILayout.EndHorizontal();
-	//	}
-	//}
-
-	
-
-
-	public void InitPrefabs()
-	{
-		GUILayout.Space(10f);
-		GUILayout.Label("Spawn Prefabs Into Scene", EditorStyles.boldLabel);
-
-		EditorGUILayout.HelpBox("This tool currently doesn't work!", MessageType.Error);
-
-		ShowInitPrefab = EditorGUILayout.Foldout(ShowInitPrefab, "Options");
-
-		if (ShowInitPrefab)
-		{
-			EditorGUILayout.HelpBox("Spawns all objects in the array.", MessageType.Info);
-
-			// Bit of code that makes the array visable
-			ScriptableObject Target = this;
-			SerializedObject SO = new SerializedObject(Target);
-			SerializedProperty TestPrefabs = SO.FindProperty("Prefabs");
-
-			EditorGUILayout.PropertyField(TestPrefabs, true);
-			SO.ApplyModifiedProperties();
-			// end of bit of code that does the thing stated above
-
-			GUILayout.BeginHorizontal();
-			GUILayout.FlexibleSpace();
-
-			if (GUILayout.Button("Spawn Prefabs", GUILayout.MaxWidth(100)))
-			{
-				int Number = 0;
-
-				foreach (GameObject Obj in FindObjectsOfType<GameObject>())
-				{
-					for (int i = 0; i < Prefabs.Length; i++)
-					{
-						if (Obj.gameObject == Prefabs[i].gameObject)
-						{
-							//return;
-						}
-						else if (Number == FindObjectsOfType<GameObject>().Length)
-						{
-							Debug.Log("Make OBJ");
-						}
-						else
-						{
-							Number++;
-						}
-					}
-				}
-
-				Debug.Log(Number);
-				Debug.Log(FindObjectsOfType<GameObject>().Length);
-			}
-
-			GUILayout.EndHorizontal();
-		}
-	}
-
 
 
 
@@ -230,6 +143,168 @@ public class JTools : EditorWindow
 				ReplaceString = null;
 			}
 			EditorGUILayout.EndHorizontal();
+		}
+	}
+
+
+
+
+	private void FindTags()
+	{
+		GUILayout.Space(10f);
+		GUILayout.Label("Find GameObject(s) with Tag", EditorStyles.boldLabel);
+
+		ShowFindTag = EditorGUILayout.Foldout(ShowFindTag, "Options");
+
+		if (ShowFindTag)
+		{
+			EditorGUILayout.HelpBox("Find GameObjects that have the tag entered and returns the results into the array", MessageType.Info);
+
+			EditorGUILayout.BeginHorizontal();
+			EditorGUILayout.PrefixLabel("Tag to search for: ");
+			TagString = EditorGUILayout.TagField(TagString);
+			EditorGUILayout.EndHorizontal();
+
+			EditorGUILayout.BeginHorizontal();
+			GUILayout.FlexibleSpace();
+			if (GUILayout.Button("Search", GUILayout.MaxWidth(60)))
+			{
+				if (TagArray.Length != 0)
+				{
+					GameObject[] TempArray = new GameObject[0];
+					TagArray = TempArray;
+				}
+
+				foreach (GameObject Obj in FindObjectsOfType<GameObject>())
+				{
+					if (Obj.tag == TagString)
+					{
+						// Makes the Array 1 Bigger
+						GameObject[] TempArray = new GameObject[TagArray.Length + 1];
+						TagArray.CopyTo(TempArray, 0);
+						TagArray = TempArray;
+
+						// Adds the found object to the array
+						TagArray[TagArray.Length-1] = Obj.gameObject;
+					}
+				}
+
+				TagString = null;
+			}
+			EditorGUILayout.EndHorizontal();
+
+			EditorGUILayout.HelpBox("Below are all the GameObjects that have the tag selected.", MessageType.Info);
+
+			// Bit of code that makes the array visable
+			ScriptableObject Target = this;
+			SerializedObject SO = new SerializedObject(Target);
+			SerializedProperty Array = SO.FindProperty("TagArray");
+
+			EditorGUILayout.PropertyField(Array, true);
+			SO.ApplyModifiedProperties();
+			// end of bit of code that does the thing stated above
+		}
+	}
+
+
+
+	public void AddScripts()
+	{
+		GUILayout.Space(10f);
+		GUILayout.Label("Add Script To Object", EditorStyles.boldLabel);
+
+		EditorGUILayout.HelpBox("This tool currently doesn't work!", MessageType.Error);
+
+		ShowAddScript = EditorGUILayout.Foldout(ShowAddScript, "Options");
+
+		if (ShowAddScript)
+		{
+			EditorGUILayout.HelpBox("Select the script you wish to add to the objects. Then select the gameobject(s) you wish to add that script to", MessageType.None);
+
+			GUILayout.BeginHorizontal();
+			EditorGUILayout.PrefixLabel("Script To Attach: ");
+			Script = EditorGUILayout.ObjectField(Script, typeof(MonoScript), false) as MonoScript;
+			GUILayout.EndHorizontal();
+
+			GUILayout.BeginHorizontal();
+			GUILayout.FlexibleSpace();
+			if (GUILayout.Button("Attach Script", GUILayout.MaxWidth(100)))
+			{
+				if (Script != this)
+				{
+					foreach (GameObject Obj in Selection.gameObjects)
+					{
+						if (Obj.GetComponent<MonoScript>().name != Script.name)
+						{
+
+						}
+					}
+				}
+			}
+			GUILayout.EndHorizontal();
+		}
+	}
+
+
+
+
+
+
+
+
+	public void InitPrefabs()
+	{
+		GUILayout.Space(10f);
+		GUILayout.Label("Spawn Prefabs Into Scene", EditorStyles.boldLabel);
+
+		EditorGUILayout.HelpBox("This tool currently doesn't work!", MessageType.Error);
+
+		ShowInitPrefab = EditorGUILayout.Foldout(ShowInitPrefab, "Options");
+
+		if (ShowInitPrefab)
+		{
+			EditorGUILayout.HelpBox("Spawns all objects in the array.", MessageType.Info);
+
+			// Bit of code that makes the array visable
+			ScriptableObject Target = this;
+			SerializedObject SO = new SerializedObject(Target);
+			SerializedProperty TestPrefabs = SO.FindProperty("Prefabs");
+
+			EditorGUILayout.PropertyField(TestPrefabs, true);
+			SO.ApplyModifiedProperties();
+			// end of bit of code that does the thing stated above
+
+			GUILayout.BeginHorizontal();
+			GUILayout.FlexibleSpace();
+
+			if (GUILayout.Button("Spawn Prefabs", GUILayout.MaxWidth(100)))
+			{
+				int Number = 0;
+
+				foreach (GameObject Obj in FindObjectsOfType<GameObject>())
+				{
+					for (int i = 0; i < Prefabs.Length; i++)
+					{
+						if (Obj.gameObject == Prefabs[i].gameObject)
+						{
+							//return;
+						}
+						else if (Number == FindObjectsOfType<GameObject>().Length)
+						{
+							Debug.Log("Make OBJ");
+						}
+						else
+						{
+							Number++;
+						}
+					}
+				}
+
+				Debug.Log(Number);
+				Debug.Log(FindObjectsOfType<GameObject>().Length);
+			}
+
+			GUILayout.EndHorizontal();
 		}
 	}
 }
