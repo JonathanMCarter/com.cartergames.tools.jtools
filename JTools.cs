@@ -7,9 +7,12 @@ public class JTools : EditorWindow
 
 	private string RenameString;
 	private bool ShowRenameGameObject;
+	private string FindString;
+	private string ReplaceString;
+	private bool ShowFindReplace;
 
-	private MonoScript Script;
-	private bool ShowAddScript;
+	//private MonoScript Script;
+	//private bool ShowAddScript;
 
 	private bool ShowInitPrefab;
 
@@ -23,20 +26,28 @@ public class JTools : EditorWindow
 	}
 
 
+
 	private void OnGUI()
 	{
-		GUILayout.Space(10f);
-		GUILayout.Label("J-Tools", EditorStyles.boldLabel);
-		GUILayout.Label("A random selection of tools that may or may not be useful.");
-
+		Header();
 
 		RenameGameObject();
+
+		FindAndReplaceNames();
 
 		//AddScripts();
 
 		InitPrefabs();
 	}
 
+
+
+	private void Header()
+	{
+		GUILayout.Space(10f);
+		GUILayout.Label("J-Tools", EditorStyles.boldLabel);
+		GUILayout.Label("A random selection of tools that may or may not be useful.");
+	}
 
 
 	//public void AddScripts()
@@ -82,12 +93,13 @@ public class JTools : EditorWindow
 		GUILayout.Space(10f);
 		GUILayout.Label("Spawn Prefabs Into Scene", EditorStyles.boldLabel);
 
+		EditorGUILayout.HelpBox("This tool currently doesn't work!", MessageType.Error);
+
 		ShowInitPrefab = EditorGUILayout.Foldout(ShowInitPrefab, "Options");
 
 		if (ShowInitPrefab)
 		{
-			EditorGUILayout.HelpBox("Spawns all objects in the array.", MessageType.None);
-			EditorGUILayout.HelpBox("Currently, everytime the button is pressed the objects will spawn, I've yet to get it so it doesn't create duplicates.", MessageType.Warning);
+			EditorGUILayout.HelpBox("Spawns all objects in the array.", MessageType.Info);
 
 			// Bit of code that makes the array visable
 			ScriptableObject Target = this;
@@ -103,14 +115,29 @@ public class JTools : EditorWindow
 
 			if (GUILayout.Button("Spawn Prefabs", GUILayout.MaxWidth(100)))
 			{
-				for (int i = 0; i < Prefabs.Length; i++)
+				int Number = 0;
+
+				foreach (GameObject Obj in FindObjectsOfType<GameObject>())
 				{
-					if (!Prefabs[i].activeInHierarchy)
+					for (int i = 0; i < Prefabs.Length; i++)
 					{
-						GameObject Obj = Instantiate(Prefabs[i].gameObject);
-						Obj.name = Prefabs[i].name;
+						if (Obj.gameObject == Prefabs[i].gameObject)
+						{
+							//return;
+						}
+						else if (Number == FindObjectsOfType<GameObject>().Length)
+						{
+							Debug.Log("Make OBJ");
+						}
+						else
+						{
+							Number++;
+						}
 					}
 				}
+
+				Debug.Log(Number);
+				Debug.Log(FindObjectsOfType<GameObject>().Length);
 			}
 
 			GUILayout.EndHorizontal();
@@ -124,13 +151,13 @@ public class JTools : EditorWindow
 	public void RenameGameObject()
 	{
 		GUILayout.Space(10f);
-		GUILayout.Label("Rename Objects", EditorStyles.boldLabel);
+		GUILayout.Label("Rename GameObject(s)", EditorStyles.boldLabel);
 
 		ShowRenameGameObject = EditorGUILayout.Foldout(ShowRenameGameObject, "Options");
 
 		if (ShowRenameGameObject)
 		{
-			EditorGUILayout.HelpBox("Enter the string value & press the button to change the selected gameobject(s) name(s).", MessageType.None);
+			EditorGUILayout.HelpBox("Enter the string value & press the button to change the selected gameobject(s) name(s).", MessageType.Info);
 
 			RenameString = EditorGUILayout.TextField("Name String Value:", RenameString);
 
@@ -155,6 +182,54 @@ public class JTools : EditorWindow
 			{
 				Obj.name = RenameString;
 			}
+		}
+
+		RenameString = null;
+	}
+
+
+
+
+
+
+
+	private void FindAndReplaceNames()
+	{
+		GUILayout.Space(10f);
+		GUILayout.Label("Find & Replace GameObject Names", EditorStyles.boldLabel);
+
+		ShowFindReplace = EditorGUILayout.Foldout(ShowFindReplace, "Options");
+
+		if (ShowFindReplace)
+		{
+			EditorGUILayout.HelpBox("Enter the string for the name to change, then enter the value you wish to change the objects to and press the button the change them.", MessageType.Info);
+
+			EditorGUILayout.BeginHorizontal();
+			EditorGUILayout.PrefixLabel("Find This Name: ");
+			FindString = EditorGUILayout.TextField(FindString);
+			EditorGUILayout.EndHorizontal();
+
+			EditorGUILayout.BeginHorizontal();
+			EditorGUILayout.PrefixLabel("Replace With This Name: ");
+			ReplaceString = EditorGUILayout.TextField(ReplaceString);
+			EditorGUILayout.EndHorizontal();
+
+			EditorGUILayout.BeginHorizontal();
+			GUILayout.FlexibleSpace();
+			if (GUILayout.Button("Replace Names", GUILayout.MaxWidth(105)))
+			{
+				foreach (GameObject Obj in FindObjectsOfType<GameObject>())
+				{
+					if (Obj.name == FindString)
+					{
+						Obj.name = ReplaceString;
+					}
+				}
+
+				FindString = null;
+				ReplaceString = null;
+			}
+			EditorGUILayout.EndHorizontal();
 		}
 	}
 }
