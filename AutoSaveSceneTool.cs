@@ -23,7 +23,7 @@ public class AutoSaveSceneTool : EditorWindow
 	private Color32 DisableButtonColour = new Color32(255, 177, 177, 255);
 
 	// Shows the tool in the window menu and gives it its shortcut
-	[MenuItem("Window/AutoSaveScene #A")]
+	[MenuItem("Window/AutoSaveScene")]
 	public static void ShowWindow()
 	{
 		GetWindow<AutoSaveSceneTool>("Auto Save Scene");

@@ -12,7 +12,7 @@ public class JTools : EditorWindow
 	private Color32 LightRed1 = new Color32(255, 177, 177, 255);
 
 	/* Editor Window Directory Location */
-	[MenuItem("Window/J-Tools _j")]
+	[MenuItem("Window/J-Tools")]
 	public static void ShowWindow()
 	{
 		GetWindow<JTools>("J-Tools");

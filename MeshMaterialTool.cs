@@ -23,7 +23,7 @@ public class MeshMaterialTool : EditorWindow
 	private bool IfApplyPressed;
 
 
-	[MenuItem("Window/MeshMaterialEditor #M")]
+	[MenuItem("Window/MeshMaterialEditor")]
 	public static void ShowWindow()
 	{
 		GetWindow<MeshMaterialTool>("Mesh Material Editor");
