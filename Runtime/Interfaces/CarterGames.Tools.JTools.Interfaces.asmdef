@@ -1,7 +1,9 @@
 {
-    "name": "CarterGames.Tools.JTools",
+    "name": "CarterGames.Tools.JTools.Interfaces",
     "rootNamespace": "JTools",
-    "references": [],
+    "references": [
+        "GUID:1e4e95163d6c20642b95d6f738d05908"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

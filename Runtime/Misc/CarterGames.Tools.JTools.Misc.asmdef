@@ -1,7 +1,11 @@
 {
-    "name": "CarterGames.Tools.JTools",
+    "name": "CarterGames.Tools.JTools.Misc",
     "rootNamespace": "JTools",
-    "references": [],
+    "references": [
+        "GUID:1e4e95163d6c20642b95d6f738d05908",
+        "GUID:d1d5c8a3d75d7314c925e7a8b40f6ff7",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
