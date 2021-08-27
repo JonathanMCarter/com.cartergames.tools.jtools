@@ -1,0 +1,18 @@
+{
+    "name": "CarterGames.Tools.JTools.Editor",
+    "rootNamespace": "JTools.Editor",
+    "references": [
+        "GUID:1e4e95163d6c20642b95d6f738d05908"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
