@@ -1,0 +1,2 @@
+# J-Tools
+This is my personal code library that I use between projects. Most of it is just to save time really. Just though I'd make a packaged version to make it easier to transfer between projects and ley others use it if they wish. There is no documentation for this at this time, I do plan to add some, but it's pretty far down the to-do list. Most scripts are commented with the normal XML comments so that should help here and there. 
