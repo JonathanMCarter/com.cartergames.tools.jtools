@@ -31,16 +31,31 @@ namespace JTools
         
 
 
-        /// <summary>
-        /// Disables all objects in the List GameObject pool provided.
-        /// </summary>
-        /// <param name="pool">Collection of GameObjects | Object pool to use.</param>
-        public static void DisableAllInPool(IEnumerable<GameObject> pool)
+        public static void DisableAllInPool(List<GameObject> pool)
         {
-            foreach (var obj in pool)
-                obj.SetActive(false);
+            for (int i = 0; i < pool.Count; i++)
+                pool[i].SetActive(false);
         }
         
+        public static void DisableAllInPool(GameObject[] pool)
+        {
+            for (int i = 0; i < pool.Length; i++)
+                pool[i].SetActive(false);
+        }
+        
+        
+        
+        public static void EnableAllInPool(List<GameObject> pool)
+        {
+            for (int i = 0; i < pool.Count; i++)
+                pool[i].SetActive(true);
+        }
+        
+        public static void EnableAllInPool(GameObject[] pool)
+        {
+            for (int i = 0; i < pool.Length; i++)
+                pool[i].SetActive(true);
+        }
         
 
         public static List<GameObject> ExpandPool(List<GameObject> pool, List<GameObject> prefab, Transform parent, int length, bool setActive = false)
