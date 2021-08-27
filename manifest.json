@@ -3,15 +3,19 @@
   "displayName": "J-Tools",
   "version": "0.1.0",
   "unity": "2018.1",
-  "author": "Jonathan Carter",
   "description": "A collection of scripts that save time, help with annoying mechanics or just make writing code easier.",
   "dependencies": {
-    
+    "com.unity.textmeshpro": "2.0.0"
   },
   "repository":
   {
     "type": "git",
     "url": "https://github.com/JonathanMCarter/J-Tools.git",
     "revision": ""
+  },
+  "author": {
+    "name": "Jonathan Carter",
+    "email": "jonathan@carter.games",
+    "url": "https://jonathan.carter.games/"
   }
 }
