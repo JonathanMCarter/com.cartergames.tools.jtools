@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
 using UnityEngine;
@@ -12,13 +10,13 @@ namespace JTools
         /// <summary>
         /// Enables all the items in the Button Array entered....
         /// </summary>
-        /// <param name="buttons">Button[] | To Edit...</param>
-        public static void EnableAllGameObjects(IEnumerable<GameObject> buttons)
+        /// <param name="objects">Button[] | To Edit...</param>
+        public static void EnableAllGameObjects(IEnumerable<GameObject> objects)
         {
-            foreach (var _v in buttons)
+            foreach (var obj in objects)
             {
-                if (!_v.gameObject.activeInHierarchy)
-                    _v.gameObject.SetActive(true);
+                if (!obj.gameObject.activeInHierarchy)
+                    obj.gameObject.SetActive(true);
             }
         }
         
@@ -37,6 +35,32 @@ namespace JTools
         }
         
         
+        /// <summary>
+        /// Enables all the items in the Canvas Array entered....
+        /// </summary>
+        /// <param name="buttons">Button[] | To Edit...</param>
+        public static void EnableAllButtons(IEnumerable<Button> buttons)
+        {
+            foreach (var btn in buttons)
+            {
+                if (!btn.enabled)
+                    btn.enabled = true;
+            }
+        }
+        
+        
+        /// <summary>
+        /// Enables all the items in the Button Array entered....
+        /// </summary>
+        /// <param name="objects">Button[] | To Edit...</param>
+        public static void DisableAllGameObjects(IEnumerable<GameObject> objects)
+        {
+            foreach (var obj in objects)
+            {
+                if (obj.gameObject.activeInHierarchy)
+                    obj.gameObject.SetActive(false);
+            }
+        }
         
         
         /// <summary>
@@ -53,143 +77,19 @@ namespace JTools
         }
         
         
-        
-        
         /// <summary>
-        /// Enables all the items in the Button Array entered....
+        /// Enables all the items in the Canvas Array entered....
         /// </summary>
         /// <param name="buttons">Button[] | To Edit...</param>
-        public static void EnableAllButtons(Button[] buttons)
+        public static void DisableAllButtons(IEnumerable<Button> buttons)
         {
-            foreach (var _v in buttons)
+            foreach (var btn in buttons)
             {
-                if (!_v.gameObject.activeInHierarchy)
-                    _v.gameObject.SetActive(true);
-                
-                _v.interactable = true;
+                if (btn.enabled)
+                    btn.enabled = false;
             }
         }
         
-        
-        
-        /// <summary>
-        /// Enables all the items in the Button Array entered....
-        /// </summary>
-        /// <param name="buttons">Button[] | To Edit...</param>
-        /// <param name="toIgnore">Int[] | Elements to ignore...</param>
-        public static void EnableAllButtonsBar(Button[] buttons, int[] toIgnore)
-        {
-            for (int i = 0; i < buttons.Length; i++)
-            {
-                if (ArrayContains(toIgnore, i)) continue;
-                
-                if (!buttons[i].gameObject.activeInHierarchy)
-                    buttons[i].gameObject.SetActive(true);
-
-                buttons[i].interactable = true;
-            }
-        }
-        
-        
-        
-        /// <summary>
-        /// Enables all the items in the Button Array entered....
-        /// </summary>
-        /// <param name="buttons">Button[] | To Edit...</param>
-        /// <param name="toUse">Int[] | Elements to ignore...</param>
-        public static void EnableSelectiveButtons(Button[] buttons, int[] toUse)
-        {
-            for (int i = 0; i < buttons.Length; i++)
-            {
-                if (!ArrayContains(toUse, i)) continue;
-                
-                if (!buttons[i].gameObject.activeInHierarchy)
-                    buttons[i].gameObject.SetActive(true);
-
-                buttons[i].interactable = true;
-            }
-        }
-        
-        
-        
-        /// <summary>
-        /// Disables all the items in the Button Array entered....
-        /// </summary>
-        /// <param name="buttons">Button[] | To Edit...</param>
-        /// <param name="disableObject">Bool | should disable object...</param>
-        public static void DisableAllButtons(Button[] buttons, bool disableObject = false)
-        {
-            foreach (var _v in buttons)
-            {
-                if (!disableObject)
-                    _v.interactable = false;
-                else
-                    _v.gameObject.SetActive(false);
-            }
-        }
-        
-        
-        
-        /// <summary>
-        /// Disables all the items in the Button Array entered....except the ones that are to be ignored...
-        /// </summary>
-        /// <param name="buttons">Button[] | To Edit...</param>
-        /// <param name="toIgnore">Int[] | Elements to ignore...</param>
-        /// <param name="disableObject">Bool | should disable object...</param>
-        public static void DisableAllButtonsBar(Button[] buttons, int[] toIgnore, bool disableObject = false)
-        {
-            for (int i = 0; i < buttons.Length; i++)
-            {
-                if (ArrayContains(toIgnore, i)) continue;
-                
-                if (!disableObject)
-                    buttons[i].interactable = false;
-                else
-                    buttons[i].gameObject.SetActive(false);
-            }
-        }
-        
-        
-        
-        
-        /// <summary>
-        /// Disables the selected the items in the Button Array entered only.... 
-        /// </summary>
-        /// <param name="buttons">Button[] | To Edit...</param>
-        /// <param name="toUse">Int[] | Elements to ignore...</param>
-        /// <param name="disableObject">Bool | should disable object...</param>
-        public static void DisableSelectiveButtons(Button[] buttons, int[] toUse, bool disableObject = false)
-        {
-            for (int i = 0; i < buttons.Length; i++)
-            {
-                if (!ArrayContains(toUse, i)) continue;
-                
-                if (!disableObject)
-                    buttons[i].interactable = false;
-                else
-                    buttons[i].gameObject.SetActive(false);
-            }
-        }
-        
-        
-        
-        
-        /// <summary>
-        /// Disables the selected the items in the Button Array entered only.... 
-        /// </summary>
-        /// <param name="obj">Button[] | To Edit...</param>
-        /// <param name="toUse">Int[] | Elements to ignore...</param>
-        /// <param name="disableObject">Bool | should disable object...</param>
-        public static void DisableSelective(List<GameObject> obj, int[] toDisable)
-        {
-            for (var i = 0; i < obj.Count; i++)
-            {
-                if (ArrayContains(toDisable, i)) continue;
-                obj[i].gameObject.SetActive(false);
-            }
-        }
-
-
 
         /// <summary>
         /// Returns whether or not an item is in the array entered...
@@ -200,61 +100,17 @@ namespace JTools
         /// <returns>Bool</returns>
         public static bool ArrayContains<T>(T[] array, T toFind)
         {
-            for (int i = 0; i < array.Length; i++)
-            {
-                if (array[i].Equals(toFind))
-                    return true;
-            }
-            
-            return false;
+            return array.Contains(toFind);
         }
-        
-        
-        
-        
+
+
         /// <summary>
-        /// Disables all the items in the Button Array entered....
+        /// Removes an element from an array.
         /// </summary>
-        /// <param name="buttons">Button[] | To Edit...</param>
-        /// <param name="disableObject">Bool | should disable object...</param>
-        public static void DisableAllCanvases(Canvas[] buttons, bool disableObject = false)
-        {
-            foreach (var _v in buttons)
-            {
-                if (!disableObject)
-                    _v.enabled = false;
-                else
-                    _v.gameObject.SetActive(false);
-            }
-        }
-
-
-        
-        public static int Sum(List<int> list)
-        {
-            return list.Sum();
-        }
-
-
-
-        public static List<T> SortHighestFirst<T>(List<T> list)
-        {
-            list.Sort();
-            list.Reverse();
-            return list;
-        }
-        
-        
-        public static T[] SortHighestFirst<T>(T[] array)
-        {
-            var _list = array.ToList();
-            _list.Sort();
-            _list.Reverse();
-            return _list.ToArray();
-        }
-
-
-
+        /// <param name="array">The array to edit</param>
+        /// <param name="toRemove">The element to remove</param>
+        /// <typeparam name="T">The type of the array</typeparam>
+        /// <returns>The array without the element entered.</returns>
         public static T[] RemoveFromArray<T>(T[] array, T toRemove)
         {
             var _list = array.ToList();

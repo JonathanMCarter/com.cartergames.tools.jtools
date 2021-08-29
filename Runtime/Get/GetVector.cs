@@ -15,10 +15,11 @@ namespace JTools
         /// </summary>
         /// <param name="a">The start point...</param>
         /// <param name="b">The end point...</param>
+        /// <param name="normalise">Should the result be normalised...</param>
         /// <returns>Vector2</returns>
-        public static Vector2 Line(Vector2 a, Vector2 b)
+        public static Vector2 Line(Vector2 a, Vector2 b, bool normalise = true)
         {
-            return (b - a).normalized + a;
+            return normalise ? (b - a).normalized : (b - a);
         }
 
 

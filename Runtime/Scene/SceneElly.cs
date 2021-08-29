@@ -24,6 +24,30 @@ namespace JTools
 
             return _validObjectsFromScene;
         }
+        
+        
+        /// <summary>
+        /// Gets any and all of the type requested from any active scene...
+        /// </summary>
+        /// <typeparam name="T">The type to get</typeparam>
+        /// <returns>List of any instances of the type found in the scene</returns>
+        public static List<T> GetComponentsFromAllScenes<T>()
+        {
+            var _objects = new List<GameObject>();
+            var _scenes = new List<Scene>();
+            var _validObjectsFromScene = new List<T>();
+
+            for (var i = 0; i < SceneManager.sceneCount; i++)
+                _scenes.Add(SceneManager.GetSceneAt(i));
+
+            foreach (var _s in _scenes)
+                _objects.AddRange(_s.GetRootGameObjects());
+
+            foreach (var _go in _objects)
+                _validObjectsFromScene.AddRange(_go.GetComponentsInChildren<T>(true));
+
+            return _validObjectsFromScene;
+        }
 
 
         /// <summary>
@@ -79,6 +103,21 @@ namespace JTools
         public static T GetComponentFromScene<T>()
         {
             var _allOfType = GetComponentsFromScene<T>();
+
+            return _allOfType.Count > 0 
+                ? _allOfType[0] 
+                : default;
+        }
+        
+        
+        /// <summary>
+        /// Gets the first of any and all of the type requested from any active scene...
+        /// </summary>
+        /// <typeparam name="T">The type to get</typeparam>
+        /// <returns>First instance of the type found in the active scene</returns>
+        public static T GetComponentFromAllScenes<T>()
+        {
+            var _allOfType = GetComponentsFromAllScenes<T>();
 
             return _allOfType.Count > 0 
                 ? _allOfType[0] 
