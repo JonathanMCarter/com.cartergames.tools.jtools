@@ -8,6 +8,30 @@ namespace JTools
     public static class ListArrayHelper
     {
         /// <summary>
+        /// Initialises the list if it is not already
+        /// </summary>
+        /// <param name="list">The list to edit</param>
+        /// <typeparam name="T">The type of the list</typeparam>
+        /// <returns>A initalised list</returns>
+        public static List<T> InitialiseIfNull<T>(List<T> list)
+        {
+            if (list == null)
+            {
+                Debug.Log("Null List");
+                return new List<T>();
+            }
+            
+            if (list.Count.Equals(0))
+            {
+                Debug.Log("0 Count List");
+                return new List<T>();
+            }
+
+            return list;
+        }
+        
+        
+        /// <summary>
         /// Enables all the items in the Button Array entered....
         /// </summary>
         /// <param name="objects">Button[] | To Edit...</param>
