@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEditor;
 
 namespace JTools.Editor
 {
@@ -48,9 +47,11 @@ namespace JTools.Editor
         /// <param name="options">GUILayoutOption[] | Layout options.</param>
         public static void GreenButton(string label, Action callback, params GUILayoutOption[] options)
         {
+            var _default = GUI.backgroundColor;
             GUI.backgroundColor = grnCol;
             if (GUILayout.Button(label, options))
                 callback();
+            GUI.backgroundColor = _default;
         }
         
 
@@ -62,9 +63,11 @@ namespace JTools.Editor
         /// <param name="options">GUILayoutOption[] | Layout options.</param>
         public static void YellowButton(string label, Action callback, params GUILayoutOption[] options)
         {
+            var _default = GUI.backgroundColor;
             GUI.backgroundColor = ylwCol;
             if (GUILayout.Button(label, options))
                 callback();
+            GUI.backgroundColor = _default;
         }
         
 
@@ -76,9 +79,11 @@ namespace JTools.Editor
         /// <param name="options">GUILayoutOption[] | Layout options.</param>
         public static void RedButton(string label, Action callback, params GUILayoutOption[] options)
         {
+            var _default = GUI.backgroundColor;
             GUI.backgroundColor = redCol;
             if (GUILayout.Button(label, options))
                 callback();
+            GUI.backgroundColor = _default;
         }
         
         
