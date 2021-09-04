@@ -95,7 +95,7 @@ These scripts don't easily fit into a category or is still a work in progress.<b
 <code>Raycast</code> - For calling raycasts that I know actually work xD
 <br>
 
-### RenderTextures
+### Render Textures
 <code>RenderTextureCameraDisable</code> - For disabling cameras that are used to create render textures.
 <br>
 <code>RenderTextureManager</code> - For managing the creation of render textures.
