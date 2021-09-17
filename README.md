@@ -21,6 +21,8 @@ The scripts in the Editor folder & namespace are for editor scripting and are re
 <code>Label</code> - For adding labels to custom editors.
 <br>
 <code>Layout</code> - For setting layout groups in custom editors.
+<br>
+<code>Colours</code> - Just to help adding colour to custom editors. 
 
 ## Runtime Scripts
 Contains all the scripts that can be used at runtime in your games.
