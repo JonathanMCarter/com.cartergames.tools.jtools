@@ -75,6 +75,50 @@ namespace JTools
         /// <summary>
         /// Gets any and all of the type requested from the scene requested...
         /// </summary>
+        /// <param name="s">The scene to search</param>
+        /// <typeparam name="T">The type to get</typeparam>
+        /// <returns>List of any instances of the type found in the scene</returns>
+        /// <returns></returns>
+        public static List<T> GetComponentsFromScene<T>(string s)
+        {
+            var _objects = new List<GameObject>();
+            var _scene = SceneManager.GetSceneByName(s);
+            var _validObjectsFromScene = new List<T>();
+            
+            _scene.GetRootGameObjects(_objects);
+            
+            foreach (var _go in _objects)
+                _validObjectsFromScene.AddRange(_go.GetComponentsInChildren<T>(true));
+
+            return _validObjectsFromScene;
+        }
+
+
+        /// <summary>
+        /// Gets any and all of the type requested from the scene requested...
+        /// </summary>
+        /// <param name="s">The scene to search</param>
+        /// <typeparam name="T">The type to get</typeparam>
+        /// <returns>List of any instances of the type found in the scene</returns>
+        /// <returns></returns>
+        public static List<T> GetComponentsFromScene<T>(int s)
+        {
+            var _objects = new List<GameObject>();
+            var _scene = SceneManager.GetSceneAt(s);
+            var _validObjectsFromScene = new List<T>();
+            
+            _scene.GetRootGameObjects(_objects);
+            
+            foreach (var _go in _objects)
+                _validObjectsFromScene.AddRange(_go.GetComponentsInChildren<T>(true));
+
+            return _validObjectsFromScene;
+        }
+        
+        
+        /// <summary>
+        /// Gets any and all of the type requested from the scene requested...
+        /// </summary>
         /// <param name="s">The scenes to search</param>
         /// <typeparam name="T">The type to get</typeparam>
         /// <returns>List of any instances of the type found in the scene</returns>
@@ -132,6 +176,38 @@ namespace JTools
         /// <typeparam name="T">The type to get</typeparam>
         /// <returns>First instance of the type found in the scene provided</returns>
         public static T GetComponentFromScene<T>(Scene s)
+        {
+            var _allOfType = GetComponentsFromScene<T>(s);
+
+            return _allOfType.Count > 0 
+                ? _allOfType[0] 
+                : default;
+        }
+        
+        
+        /// <summary>
+        /// Gets the first of any and all of the type requested from the scene requested...
+        /// </summary>
+        /// <param name="s">The scene to search</param>
+        /// <typeparam name="T">The type to get</typeparam>
+        /// <returns>First instance of the type found in the scene provided</returns>
+        public static T GetComponentFromScene<T>(string s)
+        {
+            var _allOfType = GetComponentsFromScene<T>(s);
+
+            return _allOfType.Count > 0 
+                ? _allOfType[0] 
+                : default;
+        }
+        
+        
+        /// <summary>
+        /// Gets the first of any and all of the type requested from the scene requested...
+        /// </summary>
+        /// <param name="s">The scene to search</param>
+        /// <typeparam name="T">The type to get</typeparam>
+        /// <returns>First instance of the type found in the scene provided</returns>
+        public static T GetComponentFromScene<T>(int s)
         {
             var _allOfType = GetComponentsFromScene<T>(s);
 
