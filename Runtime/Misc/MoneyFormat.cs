@@ -13,7 +13,7 @@ namespace JTools
             int i;
  
             for (i = 0; i < Suffixes.Length; i++)
-                if (value < 900)
+                if (value < 999)
                     break;
                 else value = Math.Floor(value / 100f) / 10f;
  
@@ -30,7 +30,7 @@ namespace JTools
             int i;
  
             for (i = 0; i < Suffixes.Length; i++)
-                if (value < 900)
+                if (value < 999)
                     break;
                 else value = Mathf.Floor(value / 100f) / 10f;
  
@@ -48,7 +48,7 @@ namespace JTools
             int i;
  
             for (i = 0; i < Suffixes.Length; i++)
-                if (read < 900)
+                if (read < 999)
                     break;
                 else read = Mathf.Floor(read / 100f) / 10f;
  
