@@ -5,7 +5,7 @@ This is my personal code library that I use between projects. Most of it is just
 This repo is designed to be installed via the Package manager in Unity. Just go to Window/Package Manager, under the + option use "Add package via git URL". Then copy the text below into the field and click add. 
 
 <pre>
-<code>https://github.com/JonathanMCarter/com.cartergames.tools.jtools.git</code>
+https://github.com/JonathanMCarter/com.cartergames.tools.jtools.git
 </pre>
 
 That's it, that package will import and you should be all set to use the library. 
