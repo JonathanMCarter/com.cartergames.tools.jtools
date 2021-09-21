@@ -88,6 +88,8 @@ These scripts don't easily fit into a category or is still a work in progress.<b
 <br>
 <code>ProgressBar</code> - For creating sliders with just UI images using a sliced image and a normalised value.
 <br>
+<code>TryGet</code> - A version of TryGetComponent but for parents and children of an GameObject.
+<br>
 
 ### Polish
 <code>CameraShake</code> - For shaking the camera around a bit.
