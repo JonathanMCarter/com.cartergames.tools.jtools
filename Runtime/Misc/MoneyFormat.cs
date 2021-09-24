@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace JTools
@@ -15,11 +15,17 @@ namespace JTools
             for (i = 0; i < Suffixes.Length; i++)
                 if (value < 999)
                     break;
-                else value = Math.Floor(value / 100f) / 10f;
- 
+                else
+                    value = Math.Floor(value / 100f) / 10f;
+            
+
             if (Math.Abs(value - Math.Floor(value)) < .1f)
                 result = value + Suffixes[i];
-            else result = value.ToString("F1") + Suffixes[i];
+            else if (value < 99999) 
+                result = value.ToString("F1") + Suffixes[i];
+            else
+                result = value.ToString("N0") + Suffixes[i];
+
             return result;
         }
         
@@ -32,11 +38,17 @@ namespace JTools
             for (i = 0; i < Suffixes.Length; i++)
                 if (value < 999)
                     break;
-                else value = Mathf.Floor(value / 100f) / 10f;
- 
-            if (Math.Abs(value - Mathf.Floor(value)) < .1f)
+                else
+                    value = Math.Floor(value / 100f) / 10f;
+            
+
+            if (Math.Abs(value - Math.Floor(value)) < .1f)
                 result = value + Suffixes[i];
-            else result = value.ToString("F1") + Suffixes[i];
+            else if (value < 99999) 
+                result = value.ToString("F1") + Suffixes[i];
+            else
+                result = value.ToString("N0") + Suffixes[i];
+
             return result;
         }
         
@@ -48,13 +60,19 @@ namespace JTools
             int i;
  
             for (i = 0; i < Suffixes.Length; i++)
-                if (read < 999)
+                if (value < 999)
                     break;
-                else read = Mathf.Floor(read / 100f) / 10f;
- 
-            if (Math.Abs(read - Mathf.Floor(read)) < .1f)
-                result = read + Suffixes[i];
-            else result = read.ToString("F1") + Suffixes[i];
+                else
+                    value = Math.Floor(value / 100f) / 10f;
+            
+
+            if (Math.Abs(value - Math.Floor(value)) < .1f)
+                result = value + Suffixes[i];
+            else if (value < 99999) 
+                result = value.ToString("F1") + Suffixes[i];
+            else
+                result = value.ToString("N0") + Suffixes[i];
+                
             return result;
         }
     }
