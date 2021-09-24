@@ -13,10 +13,11 @@ namespace JTools
             int i;
  
             for (i = 0; i < Suffixes.Length; i++)
+            {
                 if (value < 999)
                     break;
-                else
-                    value = Math.Floor(value / 100f) / 10f;
+                else value = Math.Floor(value / 100f) / 10f;
+            }
             
 
             if (Math.Abs(value - Math.Floor(value)) < .1f)
@@ -36,10 +37,11 @@ namespace JTools
             int i;
  
             for (i = 0; i < Suffixes.Length; i++)
+            {
                 if (value < 999)
                     break;
-                else
-                    value = Math.Floor(value / 100f) / 10f;
+                else value = (float) Math.Floor(value / 100f) / 10f;
+            }
             
 
             if (Math.Abs(value - Math.Floor(value)) < .1f)
@@ -60,18 +62,19 @@ namespace JTools
             int i;
  
             for (i = 0; i < Suffixes.Length; i++)
-                if (value < 999)
+            {
+                if (read < 999)
                     break;
-                else
-                    value = Math.Floor(value / 100f) / 10f;
+                else read = Mathf.Floor(read / 100f) / 10f;
+            }
             
 
-            if (Math.Abs(value - Math.Floor(value)) < .1f)
-                result = value + Suffixes[i];
-            else if (value < 99999) 
-                result = value.ToString("F1") + Suffixes[i];
+            if (Math.Abs(read - Mathf.Floor(read)) < .1f)
+                result = read + Suffixes[i];
+            else if (read < 99999) 
+                result = read.ToString("F1") + Suffixes[i];
             else
-                result = value.ToString("N0") + Suffixes[i];
+                result = read.ToString("N0") + Suffixes[i];
                 
             return result;
         }
