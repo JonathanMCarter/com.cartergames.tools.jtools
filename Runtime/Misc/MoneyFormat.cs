@@ -68,10 +68,11 @@ namespace JTools
                 else read = Mathf.Floor(read / 100f) / 10f;
             }
             
-
+            Debug.Log(i);
+            
             if (Math.Abs(read - Mathf.Floor(read)) < .1f)
                 result = read + Suffixes[i];
-            else if (read < 99999) 
+            else if (value < 99999) 
                 result = read.ToString("F1") + Suffixes[i];
             else
                 result = read.ToString("N0") + Suffixes[i];
