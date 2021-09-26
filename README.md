@@ -30,6 +30,12 @@ Contains all the scripts that can be used at runtime in your games.
 ### Attributes
 <code>ReadOnly</code> - Makes an element a read-only field in the inspector, so you can view the field but not edit it. Use via: <code>[ReadOnly]</code>
 
+### Formatting
+<code>MoneyFormat</code> - For formatting a double as generic currency such as K, M, B, T, aa, ab, ac etc.
+<br>
+<code>PositionFormat</code> - For formatting int's as a position like 1st, 2nd, 3rd, 4th etc.
+<br>
+
 ### Get
 <code>GetChance</code> - For getting changes like 1 in 100, 50/50 & 1 in X.
 <br>
@@ -80,13 +86,7 @@ These scripts don't easily fit into a category or is still a work in progress.<b
 <br>
 <code>MinMax</code> - For defining a min/max ranges.
 <br>
-<code>MoneyFormat</code> - For formatting a double as generic currency.
-<br>
 <code>OpenURL</code> - For opening URL's, both webpages & discord invite links.
-<br>
-<code>PositionFormat</code> - For formatting int's as a position like 1st, 2nd, 3rd, 4th etc.
-<br>
-<code>ProgressBar</code> - For creating sliders with just UI images using a sliced image and a normalised value.
 <br>
 <code>TryGet</code> - A version of TryGetComponent but for parents and children of an GameObject.
 <br>
@@ -131,6 +131,8 @@ These scripts don't easily fit into a category or is still a work in progress.<b
 
 ### UI
 <code>CustomGridLayout</code> - A custom version of the <code>GridLayout</code> component. 
+<br>
+<code>ProgressBar</code> - For creating sliders with just UI images using a sliced image and a normalised value.
 <br>
 
 
