@@ -1,10 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 namespace JTools
 {
+    /// <summary>
+    /// A collection of methods to help with object pooling
+    /// </summary>
     public static class PoolHelper
     {
         /// <summary>
@@ -18,7 +20,6 @@ namespace JTools
         }
         
         
-        
         /// <summary>
         /// Checks to see if there are any free objects in the pool provided...
         /// </summary>
@@ -30,39 +31,41 @@ namespace JTools
         }
         
 
-
+        /// <summary>
+        /// Disables all objects in the pool entered...
+        /// </summary>
+        /// <param name="pool"></param>
         public static void DisableAllInPool(List<GameObject> pool)
         {
-            for (int i = 0; i < pool.Count; i++)
-                pool[i].SetActive(false);
+            foreach (var obj in pool)
+                obj.SetActive(false);
         }
-        
-        public static void DisableAllInPool(GameObject[] pool)
-        {
-            for (int i = 0; i < pool.Length; i++)
-                pool[i].SetActive(false);
-        }
-        
-        
-        
+
+
+        /// <summary>
+        /// Enables all objects in the pool entered...
+        /// </summary>
+        /// <param name="pool"></param>
         public static void EnableAllInPool(List<GameObject> pool)
         {
             for (int i = 0; i < pool.Count; i++)
                 pool[i].SetActive(true);
         }
-        
-        public static void EnableAllInPool(GameObject[] pool)
-        {
-            for (int i = 0; i < pool.Length; i++)
-                pool[i].SetActive(true);
-        }
-        
 
-        public static List<GameObject> ExpandPool(List<GameObject> pool, List<GameObject> prefab, Transform parent, int length, bool setActive = false)
+
+        /// <summary>
+        /// Expands the object pool entered and returns the result...
+        /// </summary>
+        /// <param name="pool">The pool to edit</param>
+        /// <param name="prefab">The prefab or random from a list of prefabs</param>
+        /// <param name="parent">The to assign the object too</param>
+        /// <param name="setActive">How the prefabs be set to</param>
+        /// <returns>The expanded pool</returns>
+        public static List<GameObject> ExpandPool(List<GameObject> pool, List<GameObject> prefab, Transform parent, bool setActive = false)
         {
             var _list = new List<GameObject>();
             
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < prefab.Count; i++)
             {
                 GameObject _go = Object.Instantiate(GetRandom.FromList(prefab), parent);
                 _go.SetActive(setActive);
@@ -73,227 +76,106 @@ namespace JTools
             return pool;
         }
         
-        
-        
+
         /// <summary>
-        /// Sets up an object pool for use...
+        /// Sets up the object pool entered and returns the result...
         /// </summary>
-        /// <param name="prefab">GameObject | The prefab to add to the pool...</param>
-        /// <param name="length">Int | The amount of objects you want in this pool...</param>
-        /// <returns>Array of GameObjects</returns>
-        public static GameObject[] SetupArrayPool(GameObject prefab, int length)
+        /// <param name="prefab">The prefab to use</param>
+        /// <param name="length">The amount of objects to spawn</param>
+        /// <param name="pool">The pool to edit</param>
+        public static void SetupObjectPool(GameObject prefab, int length, out List<GameObject> pool)
         {
-            var _array = new GameObject[length];
-            
+            var _pool = new List<GameObject>();
+
             for (var i = 0; i < length; i++)
             {
                 var _go = Object.Instantiate(prefab);
                 _go.SetActive(false);
-                _array[i] = _go;
+                _pool.Add(_go);
             }
 
-            return _array;
+            pool = _pool;
         }
         
         
         /// <summary>
-        /// Sets up an object pool for use...
+        /// Sets up the object pool entered and outs the result...
         /// </summary>
-        /// <param name="prefab">GameObject | The prefab to add to the pool...</param>
-        /// <param name="parent">Transform | The parent object to add the pool objects too...</param>
-        /// <param name="length">Int | The amount of objects you want in this pool...</param>
-        /// <param name="setActive">Bool | Optional | Should start enabled?</param>
-        /// <returns>Array of GameObjects</returns>
-        public static GameObject[] SetupArrayPool(GameObject prefab, Transform parent, int length, bool setActive = false)
+        /// <param name="prefab">The prefab to use</param>
+        /// <param name="parent">The parent to set the objects to</param>
+        /// <param name="length">The amount of objects to spawn</param>
+        /// <param name="pool">The pool to edit</param>
+        public static void SetupObjectPool(GameObject prefab, Transform parent, int length, out List<GameObject> pool)
         {
-            var _array = new GameObject[length];
-            
+            var _pool = new List<GameObject>();
+
+            for (var i = 0; i < length; i++)
+            {
+                var _go = Object.Instantiate(prefab, parent);
+                _go.SetActive(false);
+                _pool.Add(_go);
+            }
+
+            pool = _pool;
+        }
+        
+        
+        /// <summary>
+        /// Sets up the object pool entered and outs the result...
+        /// </summary>
+        /// <param name="prefab">The prefab to use</param>
+        /// <param name="parent">The parent to set the objects to</param>
+        /// <param name="length">The amount of objects to spawn</param>
+        /// <param name="setActive">How the prefabs be set to</param>
+        /// <param name="pool">The pool to edit</param>
+        public static void SetupObjectPool(GameObject prefab, Transform parent, int length, bool setActive, out List<GameObject> pool)
+        {
+            var _pool = new List<GameObject>();
+
             for (var i = 0; i < length; i++)
             {
                 var _go = Object.Instantiate(prefab, parent);
                 _go.SetActive(setActive);
-                _array[i] = _go;
+                _pool.Add(_go);
             }
 
-            return _array;
+            pool = _pool;
         }
-        
-        
-        
+
+
         /// <summary>
-        /// Sets up a new array of the type defined from an array of GameObjects....
+        /// Sets up an object pool with a children component of the entered list of GameObjects and outs the result...
         /// </summary>
-        /// <param name="pool">GameObject Array | The array to read from...</param>
-        /// <param name="length">Int | The amount of objects you want in this pool...</param>
-        /// <typeparam name="T">T | The type to make the list of...</typeparam>
-        /// <returns></returns>
-        /// <remarks>Handy when you want to get a component in each object of a collection...</remarks>
-        public static T[] SetupArrayPoolFromComponent<T>(GameObject[] pool, int length)
+        /// <param name="pool">The objects to get the component from</param>
+        /// <param name="length">The length of the pool</param>
+        /// <param name="outPool">The result</param>
+        /// <typeparam name="T">The type to find</typeparam>
+        public static void SetupObjectPoolFromChildren<T>(List<GameObject> pool, int length, out List<T> outPool)
         {
-            var _array = new T[length];
+            var _pool = new List<T>();
             
             for (var i = 0; i < length; i++)
             {
                 var _go = pool[i].GetComponent<T>();
-                _array[i] = _go;
+                _pool.Add(_go);
             }
 
-            return _array;
+            outPool = _pool;
         }
         
         
-        
-        /// <summary>
-        /// Sets up a new array of the child type defined from an array of GameObjects....
-        /// </summary>
-        /// <param name="pool">GameObject Array | The array to read from...</param>
-        /// <param name="length">Int | The amount of objects you want in this pool...</param>
-        /// <typeparam name="T">T | The type to make the list of...</typeparam>
-        /// <returns></returns>
-        /// <remarks>Handy when you want to get a child component in each object of a collection...</remarks>
-        public static T[] SetupArrayPoolFromChildComponent<T>(GameObject[] pool, int length)
-        {
-            var _array = new T[length];
-            
-            for (var i = 0; i < length; i++)
-            {
-                var _go = pool[i].GetComponentInChildren<T>();
-                _array[i] = _go;
-            }
-
-            return _array;
-        }
-        
-        
-        
-        /// <summary>
-        /// Sets up an object pool for use...
-        /// </summary>
-        /// <param name="prefab">GameObject | The prefab to add to the pool...</param>
-        /// <param name="length">Int | The amount of objects you want in this pool...</param>
-        /// <param name="setActive">Bool | Optional | Should start enabled?</param>
-        /// <returns>List of GameObjects</returns>
-        public static List<GameObject> SetupListPool(GameObject prefab, int length, bool setActive = false)
-        {
-            var _list = new List<GameObject>();
-            
-            for (var i = 0; i < length; i++)
-            {
-                var _go = Object.Instantiate(prefab);
-                _go.SetActive(setActive);
-                _list.Add(_go);
-            }
-
-            return _list;
-        }
-        
-        
-        
-        /// <summary>
-        /// Sets up an object pool for use...
-        /// </summary>
-        /// <param name="prefab">GameObject | The prefab to add to the pool...</param>
-        /// <param name="parent">Transform | The parent object to add the pool objects too...</param>
-        /// <param name="length">Int | The amount of objects you want in this pool...</param>
-        /// <param name="setActive">Bool | Optional | Should start enabled?</param>
-        /// <returns></returns>
-        public static List<GameObject> SetupListPool(GameObject prefab, Transform parent, int length, bool setActive = false)
-        {
-            List<GameObject> _list = new List<GameObject>();
-            
-            for (int i = 0; i < length; i++)
-            {
-                GameObject _go = Object.Instantiate(prefab, parent);
-                _go.SetActive(setActive);
-                _list.Add(_go);
-            }
-
-            return _list;
-        }
-
-
-        
-        /// <summary>
-        /// Sets up a new array of the type defined from an array of GameObjects....
-        /// </summary>
-        /// <param name="pool">GameObject List | The array to read from...</param>
-        /// <param name="length">Int | The amount of objects you want in this pool...</param>
-        /// <typeparam name="T">T | The type to make the list of...</typeparam>
-        /// <returns></returns>
-        /// <remarks>Handy when you want to get a component in each object of a collection...</remarks>
-        public static List<T> SetupListPoolFromComponent<T>(List<GameObject> pool, int length)
-        {
-            var _array = new List<T>();
-            
-            for (var i = 0; i < length; i++)
-            {
-                var _go = pool[i].GetComponent<T>();
-                _array.Add(_go);
-            }
-
-            return _array;
-        }
-        
-        
-        
-        /// <summary>
-        /// Sets up a new array of the child type defined from an array of GameObjects....
-        /// </summary>
-        /// <param name="pool">GameObject List | The array to read from...</param>
-        /// <param name="length">Int | The amount of objects you want in this pool...</param>
-        /// <typeparam name="T">T | The type to make the list of...</typeparam>
-        /// <returns></returns>
-        /// <remarks>Handy when you want to get a child component in each object of a collection...</remarks>
-        public static List<T> SetupListPoolFromChildComponent<T>(List<GameObject> pool, int length)
-        {
-            var _array = new List<T>();
-            
-            for (var i = 0; i < length; i++)
-            {
-                var _go = pool[i].GetComponentInChildren<T>();
-                _array.Add(_go);
-            }
-
-            return _array;
-        }
-        
-        
-
         /// <summary>
         /// Makes a new object from the prefab that is ready to be added to a pool....
         /// </summary>
         /// <param name="prefab">GameObject | The prefab to add to the pool...</param>
         /// <param name="parent">Transform | The parent object to add the pool objects too...</param>
         /// <returns></returns>
-        public static GameObject SetupNewItemInPool(GameObject prefab, Transform parent)
+        public static void SetupNewItemInPool(GameObject prefab, Transform parent, List<GameObject> pool, out List<GameObject> _updatedPool)
         {
             var _go = Object.Instantiate(prefab, parent);
             _go.SetActive(false);
-            return _go;
-        }
-        
-        
-        
-        /// <summary>
-        /// Sets up an object pool for use...
-        /// </summary>
-        /// <param name="prefab">GameObject | The prefab to add to the pool...</param>
-        /// <param name="parent">Transform | The parent object to add the pool objects too...</param>
-        /// <param name="length">Int | The amount of objects you want in this pool...</param>
-        /// <param name="setActive">Bool | Optional | Should start enabled?</param>
-        /// <returns></returns>
-        public static List<GameObject> SetupListPool(List<GameObject> prefab, Transform parent, int length, bool setActive = false)
-        {
-            List<GameObject> _list = new List<GameObject>();
-            
-            for (int i = 0; i < length; i++)
-            {
-                GameObject _go = Object.Instantiate(GetRandom.FromList(prefab), parent);
-                _go.SetActive(setActive);
-                _list.Add(_go);
-            }
-
-            return _list;
+            pool.Add(_go);
+            _updatedPool = pool;
         }
     }
 }

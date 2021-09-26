@@ -4,6 +4,11 @@ using UnityEngine.SceneManagement;
 
 namespace JTools
 {
+    /// <summary>
+    /// Gets components from the current, any or all scenes currently in use...
+    /// A bit more performant that FindObjectsOfType & GameObject.Find()...
+    /// </summary>
+    /// <remarks>Why SceneElly? its my short slang for SceneElement xD</remarks>
     public static class SceneElly
     {
         /// <summary>
@@ -119,6 +124,28 @@ namespace JTools
         /// <summary>
         /// Gets any and all of the type requested from the scene requested...
         /// </summary>
+        /// <param name="s">The scene to search</param>
+        /// <typeparam name="T">The type to get</typeparam>
+        /// <returns>List of any instances of the type found in the scene</returns>
+        /// <returns></returns>
+        public static List<T> GetComponentsFromSceneByBuildIndex<T>(int s)
+        {
+            var _objects = new List<GameObject>();
+            var _scene = SceneManager.GetSceneByBuildIndex(s);
+            var _validObjectsFromScene = new List<T>();
+            
+            _scene.GetRootGameObjects(_objects);
+            
+            foreach (var _go in _objects)
+                _validObjectsFromScene.AddRange(_go.GetComponentsInChildren<T>(true));
+
+            return _validObjectsFromScene;
+        }
+        
+        
+        /// <summary>
+        /// Gets any and all of the type requested from the scene requested...
+        /// </summary>
         /// <param name="s">The scenes to search</param>
         /// <typeparam name="T">The type to get</typeparam>
         /// <returns>List of any instances of the type found in the scene</returns>
@@ -210,6 +237,22 @@ namespace JTools
         public static T GetComponentFromScene<T>(int s)
         {
             var _allOfType = GetComponentsFromScene<T>(s);
+
+            return _allOfType.Count > 0 
+                ? _allOfType[0] 
+                : default;
+        }
+        
+        
+        /// <summary>
+        /// Gets the first of any and all of the type requested from the scene requested...
+        /// </summary>
+        /// <param name="s">The scene to search</param>
+        /// <typeparam name="T">The type to get</typeparam>
+        /// <returns>First instance of the type found in the scene provided</returns>
+        public static T GetComponentFromSceneByBuildIndex<T>(int s)
+        {
+            var _allOfType = GetComponentsFromSceneByBuildIndex<T>(s);
 
             return _allOfType.Count > 0 
                 ? _allOfType[0] 

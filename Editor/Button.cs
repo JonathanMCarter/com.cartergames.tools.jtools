@@ -9,25 +9,6 @@ namespace JTools.Editor
     public static class Button
     {
         /// <summary>
-        /// The Green colour used in the button.
-        /// </summary>
-        private static Color32 grnCol = new Color32(72, 222, 55, 255);
-        
-        
-        /// <summary>
-        /// The Yellow colour used in the button.
-        /// </summary>
-        private static Color32 ylwCol = new Color32(245, 234, 56, 255);
-        
-        
-        /// <summary>
-        /// The Red colour used in the button.
-        /// </summary>
-        private static Color32 redCol = new Color32(255, 150, 157, 255);
-        
-        
-        
-        /// <summary>
         /// Shows a normal button.
         /// </summary>
         /// <param name="label">String | Label for the button.</param>
@@ -48,7 +29,7 @@ namespace JTools.Editor
         public static void GreenButton(string label, Action callback, params GUILayoutOption[] options)
         {
             var _default = GUI.backgroundColor;
-            GUI.backgroundColor = grnCol;
+            GUI.backgroundColor = Colours.Green;
             if (GUILayout.Button(label, options))
                 callback();
             GUI.backgroundColor = _default;
@@ -64,7 +45,7 @@ namespace JTools.Editor
         public static void YellowButton(string label, Action callback, params GUILayoutOption[] options)
         {
             var _default = GUI.backgroundColor;
-            GUI.backgroundColor = ylwCol;
+            GUI.backgroundColor = Colours.Yellow;
             if (GUILayout.Button(label, options))
                 callback();
             GUI.backgroundColor = _default;
@@ -80,7 +61,24 @@ namespace JTools.Editor
         public static void RedButton(string label, Action callback, params GUILayoutOption[] options)
         {
             var _default = GUI.backgroundColor;
-            GUI.backgroundColor = redCol;
+            GUI.backgroundColor = Colours.Red;
+            if (GUILayout.Button(label, options))
+                callback();
+            GUI.backgroundColor = _default;
+        }
+
+
+        /// <summary>
+        /// Creates a button with the background colour to set the value entered...
+        /// </summary>
+        /// <param name="label">String | Label for the button.</param>
+        /// <param name="color">The colour to set to</param>
+        /// <param name="callback">Action | The actions to perform on button press.</param>
+        /// <param name="options">GUILayoutOption[] | Layout options.</param>
+        public static void ColourButton(string label, Color color, Action callback, params GUILayoutOption[] options)
+        {
+            var _default = GUI.backgroundColor;
+            GUI.backgroundColor = color;
             if (GUILayout.Button(label, options))
                 callback();
             GUI.backgroundColor = _default;

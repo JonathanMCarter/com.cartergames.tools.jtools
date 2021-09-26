@@ -41,9 +41,8 @@ namespace JTools
         /// <summary>
         /// Gets a random value between the 2 ranges in the provided min/max...
         /// </summary>
-        /// <param name="range">The range to check...</param>
         /// <returns>Random value within the range...</returns>
-        public static float GetRandomFromRange(MinMax range) => GetRandom.Float(range.min, range.max);
+        public float GetRandomFromRange() => GetRandom.Float(min, max);
         
         
         /// <summary>

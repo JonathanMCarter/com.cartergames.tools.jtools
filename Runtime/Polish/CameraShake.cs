@@ -24,8 +24,8 @@ namespace JTools
         private Vector3 cameraPosition;         // Used to save the camera position before the shake effect is started, so it can be returned to its starting position.
         private GameObject cam;                 // The camera to shake.
         
-        public bool IsShakingCamera => isCoRunning;
-    
+        
+        // Risk Merge Specific...
         public static CameraShake instance;     // Static instance of this script to call it from
         
         

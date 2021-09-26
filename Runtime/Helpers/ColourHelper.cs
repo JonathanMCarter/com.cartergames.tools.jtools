@@ -35,8 +35,7 @@ namespace JTools
         /// <returns>Color</returns>
         public static Color ChangeAlpha(Color col, float alpha)
         {
-            col.a = alpha;
-            return col;
+            return new Color(col.r, col.g, col.b, alpha);
         }
         
 

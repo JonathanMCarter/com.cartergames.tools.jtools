@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace JTools.Editor
 {
-#if UNITY_EDITOR
     /// <summary>
     /// The Property Drawer for the [ReadOnly] attribute...
     /// </summary>
@@ -28,5 +27,4 @@ namespace JTools.Editor
             GUI.enabled = true;
         }
     }
-    #endif
 }
