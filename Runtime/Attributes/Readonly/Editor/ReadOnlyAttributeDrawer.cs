@@ -1,6 +1,8 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR
+
 namespace JTools.Editor
 {
     /// <summary>
@@ -28,3 +30,5 @@ namespace JTools.Editor
         }
     }
 }
+
+#endif

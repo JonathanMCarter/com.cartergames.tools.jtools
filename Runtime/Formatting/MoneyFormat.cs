@@ -76,10 +76,10 @@ namespace JTools
             if (value < 1d)
                 return "0";
 
-            var n = (int) Math.Log(value, 1000);
+            var n = (int)Math.Log(value, 1000);
             var m = value / Math.Pow(1000, n);
             var unit = "";
- 
+
             if (n < Units.Count)
                 unit = Units[n];
             else
@@ -89,22 +89,49 @@ namespace JTools
                 var firstUnit = unitInt / 26;
                 unit = Convert.ToChar(firstUnit + charA) + Convert.ToChar(secondUnit + charA).ToString();
             }
- 
-            // Math.Floor(m * 100) / 100) fixes rounding errors
+            
             var _result = Math.Floor(m * 100) / 100;
 
-            // Sorts the decimals out into the format I wanted xD
-            if (value >= 1000)
-            {
-                if (_result >= 100)
-                    return _result.ToString("F0") + unit;
-                if (_result >= 10)
-                    return _result.ToString("F1") + unit;
+            // Sorts the decimals out into the format the way I like it to be formatted...
 
-                return _result.ToString("F2") + unit;
+            // If less than 1K, just show the normal number as is...
+            if (!(value >= 1000))
+                return _result.ToString("F0") + unit;
+
+            // If the number is in the 100K 100M 100B range...
+            if (_result >= 100)
+                return _result.ToString("F0") + unit;
+
+            // If the number is within the 10K, 10M, 10B range...
+            if (_result >= 10)
+            {
+                // If the number is a round number like 12.0, 43.0, 75.0
+                // Then show it like 12K, 43K, 75K etc.
+                if ((_result % 1).Equals(0))
+                    return _result.ToString("F0") + unit;
+
+                
+                // Else if not a whole number.... show the first decimal...
+                // Like 12.5K, 34.4K, 76.2K etc.
+                return _result.ToString("F1") + unit;
             }
+
+            // Else
+            // The value is withing the 1000 - 9999 range...
+
+            // If the number is 1234, 2345, 3456 etc...
+            // The format it like 1.23K, 2.34K & 3.45K etc.
+            if (!(value % 100).Equals(0))
+                return _result.ToString("F2") + unit;
             
-            return _result.ToString("F0") + unit; 
+            // If the number is 1200, 2300, 3400 etc...
+            // The format it like 1.2K, 2.3K & 3.4K etc.
+            if (!(value % 1000).Equals(0))
+                return _result.ToString("F1") + unit;
+            
+            // Else
+            // Show it without any decimals, so 1K, 2K ,3K etc.
+            return _result.ToString("F0") + unit;
         }
     }
 }
