@@ -94,12 +94,17 @@ namespace JTools
             var _result = Math.Floor(m * 100) / 100;
 
             // Sorts the decimals out into the format I wanted xD
-            if (_result >= 100)
-                return _result.ToString("F0") + unit;
-            if (_result >= 10)
-                return _result.ToString("F1") + unit;
+            if (value >= 1000)
+            {
+                if (_result >= 100)
+                    return _result.ToString("F0") + unit;
+                if (_result >= 10)
+                    return _result.ToString("F1") + unit;
 
-            return _result.ToString("F2") + unit;
+                return _result.ToString("F2") + unit;
+            }
+            
+            return _result.ToString("F0") + unit; 
         }
     }
 }
