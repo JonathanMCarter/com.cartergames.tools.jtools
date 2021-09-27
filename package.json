@@ -1,7 +1,7 @@
 {
   "name": "com.cartergames.tools.jtools",
   "displayName": "J-Tools",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "unity": "2019.2",
   "description": "A collection of scripts that save time, help with annoying mechanics or just make writing code easier.",
   "dependencies": {
@@ -11,7 +11,7 @@
   {
     "type": "git",
     "url": "https://github.com/JonathanMCarter/com.cartergames.tools.jtools.git",
-    "revision": "0.1.4"
+    "revision": ""
   },
   "author": {
     "name": "Jonathan Carter",
