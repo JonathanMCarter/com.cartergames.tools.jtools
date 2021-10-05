@@ -35,6 +35,8 @@ Contains all the scripts that can be used at runtime in your games.
 <br>
 <code>PositionFormat</code> - For formatting int's as a position like 1st, 2nd, 3rd, 4th etc.
 <br>
+<code>TimeFormat</code> - For formatting values into time formats
+<br>
 
 ### Get
 <code>GetChance</code> - For getting changes like 1 in 100, 50/50 & 1 in X.
@@ -134,7 +136,8 @@ These scripts don't easily fit into a category or is still a work in progress.<b
 <br>
 <code>ProgressBar</code> - For creating sliders with just UI images using a sliced image and a normalised value.
 <br>
-
+<code>SliderProgressBar</code> - For using UI sliders in the same way as the Progress Bar Script
+<br>
 
 
 
