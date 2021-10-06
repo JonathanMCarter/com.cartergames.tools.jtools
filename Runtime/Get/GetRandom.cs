@@ -28,7 +28,7 @@ namespace JTools
         /// <returns>Random float between the defined bounds.</returns>
         public static float Float(float _min = 0f, float _max = 1f)
         {
-            return RNG.NextDouble(_min, _max);
+            return (float) (RNG.NextDouble() * (_max - _min) + _min);
         }
 
         
@@ -78,22 +78,22 @@ namespace JTools
         /// <returns>Random Double between the defined bounds.</returns>
         public static double Double(double _min = 0f, double _max = 1f)
         {
-            return RNG.NextDouble((float)_min, (float)_max);
+            return RNG.NextDouble() * (_max - _min) + _min;
         }
 
 
         /// <summary>
         /// Random Color (0-1)
         /// </summary>
-        public static Color Color => new Color(RNG.NextDouble(0f, 1f), RNG.NextDouble(0f, 1f), RNG.NextDouble(0f, 1f), 1f);
+        public static Color Color => new Color(Float(), Float(), Float(), 1f);
 
         
         /// <summary>
         /// Random Color32 (0-255)
         /// </summary>
         public static Color32 Color32 => Color;
-        
-        
+
+
         /// <summary>
         /// Random Vector2 (user defined min/max)
         /// </summary>
@@ -102,7 +102,7 @@ namespace JTools
         /// <returns>A random Vector2 within the min/max defined</returns>
         public static Vector2 Vector2(float min, float max)
         {
-            return new Vector2(RNG.NextDouble(min, max), RNG.NextDouble(min, max));
+            return new Vector2(Float(min, max), Float(min, max));
         }
 
         
@@ -116,7 +116,7 @@ namespace JTools
         /// <returns>A random Vector2 within the min/max defined</returns>
         public static Vector2 Vector2(float minX, float maxX, float minY, float maxY)
         {
-            return new Vector2(RNG.NextDouble(minX, maxX), RNG.NextDouble(minY, maxY));
+            return new Vector2(Float(minX, maxX), Float(minY, maxY));
         }
 
         
@@ -129,7 +129,7 @@ namespace JTools
         /// <returns>A random Vector3 within the min/max defined</returns>
         public static Vector2 Vector2(Vector2 org, float min, float max)
         {
-            return new Vector2(RNG.NextDouble(org.x - min, org.x + max), RNG.NextDouble(min, max));
+            return new Vector2(Float(org.x - min, org.x + max), Float(min, max));
         }
 
         
@@ -144,7 +144,7 @@ namespace JTools
         /// <returns>A random Vector3 within the min/max defined</returns>
         public static Vector2 Vector2(Vector2 org, float minX, float maxX, float minY, float maxY)
         {
-            return new Vector2(RNG.NextDouble(org.x - minX, org.x + maxX), RNG.NextDouble(org.y - minY, org.y + maxY));
+            return new Vector2(Float(org.x - minX, org.x + maxX), Float(org.y - minY, org.y + maxY));
         }
         
         
@@ -170,7 +170,7 @@ namespace JTools
         /// <returns>A random Vector3 within the min/max defined</returns>
         public static Vector3 Vector3(float min, float max)
         {
-            return new Vector3(RNG.NextDouble(min, max), RNG.NextDouble(min, max), RNG.NextDouble(min, max));
+            return new Vector3(Float(min, max), Float(min, max), Float(min, max));
         }
 
 
@@ -183,7 +183,7 @@ namespace JTools
         /// <returns>A random Vector3 within the min/max defined</returns>
         public static Vector3 Vector3(Vector3 min, Vector3 max)
         {
-            return new Vector3(RNG.NextDouble(min.x, max.x), RNG.NextDouble(min.y, max.y), RNG.NextDouble(min.z, max.z));
+            return new Vector3(Float(min.x, max.x), Float(min.y, max.y), Float(min.z, max.z));
         }
 
         
@@ -199,7 +199,7 @@ namespace JTools
         /// <returns>A random Vector3 within the min/max defined</returns>
         public static Vector3 Vector3(float minX, float maxX, float minY, float maxY, float minZ, float maxZ)
         {
-            return new Vector3(RNG.NextDouble(minX, maxX), RNG.NextDouble(minY, maxY), RNG.NextDouble(minZ, maxZ));
+            return new Vector3(Float(minX, maxX), Float(minY, maxY), Float(minZ, maxZ));
         }
 
         
@@ -212,7 +212,7 @@ namespace JTools
         /// <returns>A random Vector3 within the min/max defined</returns>
         public static Vector3 Vector3(Vector3 org, float min, float max)
         {
-            return new Vector3(RNG.NextDouble(org.x - min, org.x + max), RNG.NextDouble(org.y - min, org.y + max), RNG.NextDouble(org.z - min, org.z + max));
+            return new Vector3(Float(org.x - min, org.x + max), Float(org.y - min, org.y + max), Float(org.z - min, org.z + max));
         }
 
         
@@ -229,7 +229,7 @@ namespace JTools
         /// <returns>A random Vector3 within the min/max defined</returns>
         public static Vector3 Vector3(Vector3 org, float minX, float maxX, float minY, float maxY, float minZ, float maxZ)
         {
-            return new Vector3(RNG.NextDouble(org.x - minX, org.x + maxX), RNG.NextDouble(org.y - minY, org.y + maxY), RNG.NextDouble(org.z - minZ, org.z + maxZ));
+            return new Vector3(Float(org.x - minX, org.x + maxX), Float(org.y - minY, org.y + maxY), Float(org.z - minZ, org.z + maxZ));
         }
 
         
@@ -241,7 +241,7 @@ namespace JTools
         /// <returns>A random Vector4 within the min/max defined</returns>
         public static Vector4 Vector4(float min, float max)
         {
-            return new Vector4(RNG.NextDouble(min, max), RNG.NextDouble(min, max), RNG.NextDouble(min, max), RNG.NextDouble(min, max));
+            return new Vector4(Float(min, max), Float(min, max), Float(min, max), Float(min, max));
         }
 
         
@@ -259,7 +259,7 @@ namespace JTools
         /// <returns>A random Vector3 within the min/max defined</returns>
         public static Vector4 Vector4(float minX, float maxX, float minY, float maxY, float minZ, float maxZ, float minW, float maxW)
         {
-            return new Vector4(RNG.NextDouble(minX, maxX), RNG.NextDouble(minY, maxY), RNG.NextDouble(minZ, maxZ), RNG.NextDouble(minW, maxW));
+            return new Vector4(Float(minX, maxX), Float(minY, maxY), Float(minZ, maxZ), Float(minW, maxW));
         }
 
         
@@ -272,7 +272,7 @@ namespace JTools
         /// <returns>A random Vector4 within the min/max defined</returns>
         public static Vector4 Vector4(Vector4 org, float min, float max)
         {
-            return new Vector4(RNG.NextDouble(org.x - min, org.x + max), RNG.NextDouble(min, max), RNG.NextDouble(org.z - min, org.z + max), RNG.NextDouble(org.w - min, org.w + max));
+            return new Vector4(Float(org.x - min, org.x + max), Float(min, max), Float(org.z - min, org.z + max), Float(org.w - min, org.w + max));
         }
 
         
@@ -291,7 +291,7 @@ namespace JTools
         /// <returns>A random Vector3 within the min/max defined</returns>
         public static Vector4 Vector4(Vector4 org, float minX, float maxX, float minY, float maxY, float minZ, float maxZ, float minW, float maxW)
         {
-            return new Vector4(RNG.NextDouble(org.x - minX, org.x + maxX), RNG.NextDouble(org.y - minY, org.y + maxY), RNG.NextDouble(org.z - minZ, org.z + maxZ), RNG.NextDouble(org.w - minW, org.w + maxW));
+            return new Vector4(Float(org.x - minX, org.x + maxX), Float(org.y - minY, org.y + maxY), Float(org.z - minZ, org.z + maxZ), Float(org.w - minW, org.w + maxW));
         }
         
         
@@ -490,7 +490,7 @@ namespace JTools
             var _text = string.Empty;
 
             for (var i = 0; i < length; i++)
-                _text += NormalGlyphs[GetRandom.Int(0, NormalGlyphs.Length)];
+                _text += NormalGlyphs[Int(0, NormalGlyphs.Length)];
 
             return _text;
         }
@@ -508,7 +508,7 @@ namespace JTools
             var _text = prefix;
 
             for (var i = 0; i < length; i++)
-                _text += NormalGlyphs[GetRandom.Int(0, NormalGlyphs.Length - 1)];
+                _text += NormalGlyphs[Int(0, NormalGlyphs.Length - 1)];
 
             return _text;
         }
