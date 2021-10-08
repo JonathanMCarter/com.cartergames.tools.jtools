@@ -25,9 +25,7 @@ namespace JTools
         private GameObject cam;                 // The camera to shake.
         
         
-        // Risk Merge Specific...
-        public static CameraShake instance;     // Static instance of this script to call it from
-        
+        public bool IsShaking => isCoRunning;
         
         
         private void OnDisable()
