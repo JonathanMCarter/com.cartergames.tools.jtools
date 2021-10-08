@@ -35,18 +35,6 @@ namespace JTools
         }
 
 
-        private void OnEnable()
-        {
-            // Risk Merge Specific...
-            // Static Instance of script....
-            if (instance == null)
-                instance = this;
-            else
-                Destroy(this.gameObject);
-        }
-
-
-
         private void Start()
         {
             cam = this.gameObject;
