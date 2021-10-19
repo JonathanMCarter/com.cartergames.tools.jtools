@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +11,99 @@ namespace JTools
     /// <remarks>Why SceneElly? its my short slang for SceneElement xD</remarks>
     public static class SceneElly
     {
+        /// <summary>
+        /// Moves the object entered in the scene string entered...
+        /// </summary>
+        /// <param name="obj">The object to move</param>
+        /// <param name="scene">The scene to move to</param>
+        /// <returns>Was the move successful?</returns>
+        public static bool MoveObjectToScene(GameObject obj, string scene)
+        {
+            var _scene = SceneManager.GetSceneByName(scene);
+            if (_scene == null) return false;
+            SceneManager.MoveGameObjectToScene(obj, _scene);
+            return true;
+        }
+        
+        
+        /// <summary>
+        /// Moves the objects entered in the scene string entered...
+        /// </summary>
+        /// <param name="obj">The objects to move</param>
+        /// <param name="scene">The scene to move to</param>
+        /// <returns>Was the move successful?</returns>
+        public static bool MoveObjectsToScene(List<GameObject> obj, string scene)
+        {
+            var _scene = SceneManager.GetSceneByName(scene);
+            if (_scene == null) return false;
+            foreach (var i in obj)
+                SceneManager.MoveGameObjectToScene(i, _scene);
+            return true;
+        }
+        
+        
+        /// <summary>
+        /// Moves the object entered in the scene string entered...
+        /// </summary>
+        /// <param name="obj">The object to move</param>
+        /// <param name="scene">The scene to move to</param>
+        /// <returns>Was the move successful?</returns>
+        public static bool MoveObjectToScene(GameObject obj, int scene)
+        {
+            var _scene = SceneManager.GetSceneAt(scene);
+            if (_scene == null) return false;
+            SceneManager.MoveGameObjectToScene(obj, _scene);
+            return true;
+        }
+        
+        
+        /// <summary>
+        /// Moves the objects entered in the scene string entered...
+        /// </summary>
+        /// <param name="obj">The objects to move</param>
+        /// <param name="scene">The scene to move to</param>
+        /// <returns>Was the move successful?</returns>
+        public static bool MoveObjectsToScene(List<GameObject> obj, int scene)
+        {
+            var _scene = SceneManager.GetSceneAt(scene);
+            if (_scene == null) return false;
+            foreach (var i in obj)
+                SceneManager.MoveGameObjectToScene(i, _scene);
+            return true;
+        }
+        
+        
+        /// <summary>
+        /// Moves the object entered in the scene string entered...
+        /// </summary>
+        /// <param name="obj">The object to move</param>
+        /// <param name="scene">The scene to move to</param>
+        /// <returns>Was the move successful?</returns>
+        public static bool MoveObjectToSceneByBuildIndex(GameObject obj, int scene)
+        {
+            var _scene = SceneManager.GetSceneByBuildIndex(scene);
+            if (_scene == null) return false;
+            SceneManager.MoveGameObjectToScene(obj, _scene);
+            return true;
+        }
+        
+        
+        /// <summary>
+        /// Moves the objects entered in the scene string entered...
+        /// </summary>
+        /// <param name="obj">The objects to move</param>
+        /// <param name="scene">The scene to move to</param>
+        /// <returns>Was the move successful?</returns>
+        public static bool MoveObjectsToSceneByBuildIndex(List<GameObject> obj, int scene)
+        {
+            var _scene = SceneManager.GetSceneByBuildIndex(scene);
+            if (_scene == null) return false;
+            foreach (var i in obj)
+                SceneManager.MoveGameObjectToScene(i, _scene);
+            return true;
+        }
+
+
         /// <summary>
         /// Gets any and all of the type requested from the active scene...
         /// </summary>
