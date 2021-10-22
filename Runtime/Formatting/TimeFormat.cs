@@ -29,6 +29,19 @@ namespace JTools
 
         
         /// <summary>
+        /// Display the value as a ss style...
+        /// </summary>
+        /// <param name="value">The value to read</param>
+        /// <param name="format">The string format to use, default is mm:ss</param>
+        /// <returns>The formatted string</returns>
+        public static string Seconds(float value, string format = "ss")
+        {
+            var time = TimeSpan.FromSeconds(value);
+            return time.ToString(format);
+        }
+        
+        
+        /// <summary>
         /// Display the value as a mm:ss style...
         /// </summary>
         /// <param name="value">The value to read</param>
