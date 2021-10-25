@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -70,6 +70,15 @@ namespace JTools
             isCoRunning = false;
             transform.localPosition = cameraPosition;
             isCameraPositionSaved = false;
+        }
+
+
+        public void StopShake()
+        {
+            shouldCameraShake = false;
+            isCoRunning = false;
+            transform.localPosition = cameraPosition;
+            isCameraPositionSaved = false; 
         }
 
         
