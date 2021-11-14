@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace JTools
 {
+#if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(MinMax))]
     public class MinMaxPropertyDrawer : PropertyDrawer
     {
@@ -32,4 +33,5 @@ namespace JTools
             EditorGUI.EndProperty();
         }
     }
+#endif
 }
