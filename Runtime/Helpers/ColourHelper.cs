@@ -15,17 +15,7 @@ namespace JTools
         /// <returns>Color</returns>
         public static Color ColorNoAlphaEdit(Color toEdit, Color toChangeTo)
             => new Color(toChangeTo.r, toChangeTo.g, toChangeTo.b, toEdit.a);
-        
-        
-        /// <summary>
-        /// Changes the colour's with a change to the alpha value as well...
-        /// </summary>
-        /// <param name="toChangeTo">The colour to edit.</param>
-        /// <param name="alphaValue">The alpha value to set to.</param>
-        /// <returns>Color</returns>
-        public static Color ColorDifferentAlpha(Color toChangeTo, float alphaValue)
-            => new Color(toChangeTo.r, toChangeTo.g, toChangeTo.b, alphaValue / 255f);
-        
+
 
         /// <summary>
         /// Changes the alpha of the colour without affecting the colour itself...

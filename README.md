@@ -41,7 +41,7 @@ Contains all the scripts that can be used at runtime in your games.
 ### Get
 <code>GetChance</code> - For getting changes like 1 in 100, 50/50 & 1 in X.
 <br>
-<code>GetDiceRoll</code> - For getting dice rolls for a D4, D6, D8, D10, D12 & D20.
+<code>GetDiceRoll</code> - For getting dice rolls for a D4, D6, D8, D10, D12, D20, D100 & Custom Dice.
 <br>
 <code>GetLowHigh</code> - For getting lowest, median & highest in int lists mostly.
 <br>
@@ -74,17 +74,13 @@ Contains all the scripts that can be used at runtime in your games.
 
 ### Misc
 These scripts don't easily fit into a category or is still a work in progress.<br><br>
-<code>CursorController</code> - For having custom cursors in your games.
-<br>
 <code>DeepCopy</code> - For getting deep copies of any type.
 <br>
 <code>Despawner</code> - For despawning objects in a veriety of ways.
 <br>
-<code>GenericTimerDisplay</code> - For showing & managing a timer.
-<br>
 <code>GetGeneral</code> - For getting and editing values such as: difference between values, inverting values & normalising values. 
 <br>
-<code>JLogger</code> - Alternative for <code>Debug.Log</code> that can be disabled with a scripting define, the define is: <code>USE_JLOG</code>
+<code>CustomLog</code> - Alternative for <code>Debug.Log</code> that can be disabled with a scripting define, the define is: <code>USE_JLOG</code>
 <br>
 <code>MinMax</code> - For defining a min/max ranges.
 <br>
@@ -138,7 +134,10 @@ These scripts don't easily fit into a category or is still a work in progress.<b
 <br>
 <code>SliderProgressBar</code> - For using UI sliders in the same way as the Progress Bar Script
 <br>
-
+<code>GenericTextDisplay</code> - For showing a string on the tmp text element with ease.
+<br>
+<code>GenericTimerDisplay</code> - For showing & managing a timer.
+<br>
 
 
 

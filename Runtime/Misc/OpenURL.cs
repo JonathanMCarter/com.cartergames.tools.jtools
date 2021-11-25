@@ -19,7 +19,7 @@ namespace JTools
         /// <summary>
         /// Opens a Discord Invite link...
         /// </summary>
-        /// <param name="invite"></param>
+        /// <param name="invite">The invite string, the bit after the normal URL that unique to each invite</param>
         /// <remarks>
         /// You only need the enter the last bit of the URL after the  last /
         /// </remarks>

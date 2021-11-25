@@ -21,7 +21,7 @@ namespace JTools
         private static readonly int charA = Convert.ToInt32('a');
         
         /// <summary>
-        /// The unit types to desiplay before the "aa", "ab", "ac" etc.....
+        /// The unit types to display before going to "aa", "ab", "ac" etc.....
         /// </summary>
         private static readonly Dictionary<int, string> Units = new Dictionary<int, string>
         {
