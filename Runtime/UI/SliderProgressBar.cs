@@ -31,7 +31,7 @@ namespace JTools
 
             if (invert)
             {
-                slider.value = GetGeneral.Invert01(_value);
+                slider.value = _value.Invert01();
                 return;
             }
 
@@ -50,7 +50,7 @@ namespace JTools
 
             if (invert)
             {
-                slider.value = GetGeneral.Invert01(_value);
+                slider.value = _value.Invert01();
                 return;
             }
 
@@ -73,7 +73,7 @@ namespace JTools
 
             if (invert)
             {
-                slider.value = GetGeneral.Invert01(_value);
+                slider.value = _value.Invert01();
                 return;
             }
 

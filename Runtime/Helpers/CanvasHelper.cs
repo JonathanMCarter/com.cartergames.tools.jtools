@@ -38,5 +38,56 @@ namespace JTools
             group.blocksRaycasts = true;
             group.ignoreParentGroups = ignoreParentGroups;
         }
+<<<<<<< Updated upstream
+=======
+        
+        
+        /// <summary>
+        /// Enables the canvas and raycaster if attached...
+        /// </summary>
+        /// <param name="canvas">The canvas to edit</param>
+        public static void EnableCanvas(Canvas canvas)
+        {
+            canvas.enabled = true;
+            if (!canvas.TryGetComponentInChildren(out GraphicRaycaster _raycaster)) return;
+            _raycaster.enabled = true;
+        }
+        
+
+        /// <summary>
+        /// Enables the canvas and raycaster...
+        /// </summary>
+        /// <param name="canvas">The canvas to edit</param>
+        /// <param name="raycaster">The raycaster to toggle</param>
+        public static void EnableCanvas(Canvas canvas, GraphicRaycaster raycaster)
+        {
+            canvas.enabled = true;
+            raycaster.enabled = true;
+        }
+
+        
+        /// <summary>
+        /// Disabled the canvas and raycaster if attached...
+        /// </summary>
+        /// <param name="canvas">The canvas to edit</param>
+        public static void DisableCanvas(Canvas canvas)
+        {
+            canvas.enabled = false;
+            if (!canvas.TryGetComponentInChildren(out GraphicRaycaster _raycaster)) return;
+            _raycaster.enabled = false;
+        }
+        
+
+        /// <summary>
+        /// Disabled the canvas and raycaster...
+        /// </summary>
+        /// <param name="canvas">The canvas to edit</param>
+        /// <param name="raycaster">The raycaster to toggle</param>
+        public static void DisableCanvas(Canvas canvas, GraphicRaycaster raycaster)
+        {
+            canvas.enabled = false;
+            raycaster.enabled = false;
+        }
+>>>>>>> Stashed changes
     }
 }
