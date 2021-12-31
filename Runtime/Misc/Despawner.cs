@@ -15,6 +15,7 @@ namespace JTools
         public enum DeSpawnerChoices
         {
             Disable,
+            DisableCanvas,
             DisableInteractable,
             DisableAnimator,
             Destroy
@@ -84,6 +85,11 @@ namespace JTools
                     TryGetComponent(out Animator _anim);
                     if (_anim == null) break;
                     _anim.enabled = false;
+                    break;
+                case DeSpawnerChoices.DisableCanvas:
+                    TryGetComponent(out Canvas _canvas);
+                    if (_canvas == null) break;
+                    _canvas.enabled = false;
                     break;
                 default:
                     break;

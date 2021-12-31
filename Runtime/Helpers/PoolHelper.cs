@@ -48,8 +48,8 @@ namespace JTools
         /// <param name="pool"></param>
         public static void EnableAllInPool(List<GameObject> pool)
         {
-            for (int i = 0; i < pool.Count; i++)
-                pool[i].SetActive(true);
+            foreach (var obj in pool)
+                obj.SetActive(true);
         }
 
 
@@ -65,7 +65,7 @@ namespace JTools
         {
             var _list = new List<GameObject>();
             
-            for (int i = 0; i < prefab.Count; i++)
+            for (var i = 0; i < prefab.Count; i++)
             {
                 GameObject _go = Object.Instantiate(GetRandom.FromList(prefab), parent);
                 _go.SetActive(setActive);

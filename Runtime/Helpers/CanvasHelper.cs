@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace JTools
 {
@@ -38,8 +39,6 @@ namespace JTools
             group.blocksRaycasts = true;
             group.ignoreParentGroups = ignoreParentGroups;
         }
-<<<<<<< Updated upstream
-=======
         
         
         /// <summary>
@@ -88,6 +87,5 @@ namespace JTools
             canvas.enabled = false;
             raycaster.enabled = false;
         }
->>>>>>> Stashed changes
     }
 }

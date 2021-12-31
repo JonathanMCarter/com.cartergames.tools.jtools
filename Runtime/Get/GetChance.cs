@@ -13,7 +13,6 @@ namespace JTools
         public static bool Roll5050 => System.Convert.ToBoolean(GetRandom.Int(0,1));
    
         
-        
         /// <summary>
         /// Rolls out of 100 and returns whether or not the user won or lost.
         /// </summary>
@@ -24,7 +23,6 @@ namespace JTools
             var _roll = Mathf.RoundToInt(GetRandom.Float(1f, 100f));
             return _roll <= chanceOfSuccess;
         }
-        
         
         
         /// <summary>
@@ -38,7 +36,6 @@ namespace JTools
             return _roll <= chanceOfSuccess;
         }
 
-
         
         /// <summary>
         /// Returns a roll based on a 1 in x style of of chance, like a drop table...
@@ -47,8 +44,20 @@ namespace JTools
         /// <returns>Bool</returns>
         public static bool OneInX(int x)
         {
-            float _roll = GetRandom.Int(1, x + 1);
+            var _roll = GetRandom.Int(1, x + 1);
             return _roll.Equals(1);
+        }
+
+
+        /// <summary>
+        /// Returns a roll based with values between 0-1, so .5 would be 50% etc...
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool ChanceTo1(float value)
+        {
+            var _roll = GetRandom.Float();
+            return _roll <= value;
         }
     }
 }

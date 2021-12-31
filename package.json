@@ -1,11 +1,7 @@
 {
   "name": "com.cartergames.tools.jtools",
   "displayName": "J-Tools",
-<<<<<<< Updated upstream
-  "version": "0.1.16",
-=======
-  "version": "0.2.0",
->>>>>>> Stashed changes
+  "version": "0.2.1",
   "unity": "2019.2",
   "description": "A collection of scripts that save time, help with annoying mechanics or just make writing code easier.",
   "dependencies": {

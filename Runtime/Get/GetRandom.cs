@@ -10,10 +10,6 @@ namespace JTools
     /// </summary>
     public static class GetRandom
     {
-        public static int Seed { get; set; }
-        private static System.Random RNG = new System.Random(Seed);
-        
-        
         /// <summary>
         /// The characters to use in the random string getters...
         /// </summary>
@@ -28,7 +24,7 @@ namespace JTools
         /// <returns>Random float between the defined bounds.</returns>
         public static float Float(float _min = 0f, float _max = 1f)
         {
-            return (float) (RNG.NextDouble() * (_max - _min) + _min);
+            return Random.Range(_min, _max);
         }
 
         
@@ -43,8 +39,8 @@ namespace JTools
         {
             // if ? true : false;
             return inclusive 
-                ? RNG.Next(_min, _max + 1) 
-                : RNG.Next(_min, _max);
+                ? Random.Range(_min, _max + 1) 
+                : Random.Range(_min, _max);
         }
         
         
@@ -55,7 +51,7 @@ namespace JTools
         /// <returns>Random Int between the defined bounds.</returns>
         public static int Int<T>(List<T> _max)
         {
-            return RNG.Next(0, _max.Count - 1);
+            return Random.Range(0, _max.Count - 1);
         }
         
         
@@ -66,7 +62,7 @@ namespace JTools
         /// <returns>Random Int between the defined bounds.</returns>
         public static int Int<T>(T[] _max)
         {
-            return RNG.Next(0, _max.Length - 1);
+            return Random.Range(0, _max.Length - 1);
         }
         
         
@@ -78,7 +74,7 @@ namespace JTools
         /// <returns>Random Double between the defined bounds.</returns>
         public static double Double(double _min = 0f, double _max = 1f)
         {
-            return RNG.NextDouble() * (_max - _min) + _min;
+            return Random.Range((float)_min, (float)_max);
         }
 
 
@@ -326,14 +322,13 @@ namespace JTools
         /// <returns>Array of ints</returns>
         public static int[] Order(int lenght)
         {
-            List<int> _order = new List<int>();
+            var _order = new List<int>();
 
-            for (int i = 0; i < lenght; i++)
-            {
+            for (var i = 0; i < lenght; i++)
                 _order.Add(i);
-            }
-            
-            var _newOrder = _order.OrderBy(a => RNG.Next());
+
+            var _rand = new System.Random();
+            var _newOrder = _order.OrderBy(a => _rand.Next());
 
             return _newOrder.ToArray();
         }
@@ -351,7 +346,7 @@ namespace JTools
             var _l = new List<int>();
             var _total = 0;
             
-            for (int i = 0; i < numberOfElements; i++)
+            for (var i = 0; i < numberOfElements; i++)
             {
                 _l.Add(Int(min, max));
                 _total += _l[i];
@@ -374,7 +369,7 @@ namespace JTools
             var _l = new List<int>();
             var _total = 0;
             
-            for (int i = 0; i < numberOfElements; i++)
+            for (var i = 0; i < numberOfElements; i++)
             {
                 _l.Add(Int(min, max));
                 _total += _l[i];
@@ -511,6 +506,17 @@ namespace JTools
                 _text += NormalGlyphs[Int(0, NormalGlyphs.Length - 1)];
 
             return _text;
+        }
+
+
+        /// <summary>
+        /// Gets a random value between a minmax range...
+        /// </summary>
+        /// <param name="value">The range to check</param>
+        /// <returns>The value it chooses</returns>
+        public static float MinMax(MinMax value)
+        {
+            return Float(value.min, value.max);
         }
     }
 }
